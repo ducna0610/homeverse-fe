@@ -1,0 +1,175 @@
+<section class="contact">
+    <div class="row">
+      <div class="image">
+        <img src="images/contact-img.svg" alt="" />
+      </div>
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <h3>Liên hệ ngay</h3>
+        <input
+          type="text"
+          name="name"
+          placeholder="tên"
+          class="box"
+          formControlName="name"
+          [class.ng-touched]="isSubmitted || contactForm.get('name')!.touched"
+        />
+        <span
+          *ngIf="
+            contactForm.get('name')!.invalid &&
+            (contactForm.get('name')!.touched || isSubmitted)
+          "
+          class="error"
+        >
+          <span *ngIf="contactForm.get('name')!.hasError('required')">
+            Tên phải nhập
+          </span>
+        </span>
+  
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          class="box"
+          formControlName="email"
+          [class.ng-touched]="isSubmitted || contactForm.get('email')!.touched"
+        />
+        <span
+          *ngIf="
+            contactForm.get('email')!.invalid &&
+            (contactForm.get('email')!.touched || isSubmitted)
+          "
+          class="error"
+        >
+          <span *ngIf="contactForm.get('email')!.hasError('required')">
+            Email phải nhập
+          </span>
+          <span *ngIf="contactForm.get('email')!.hasError('email')">
+            Email không hợp lệ
+          </span>
+        </span>
+  
+        <input
+          type="tel"
+          name="number"
+          placeholder="số diện thoại"
+          class="box"
+          formControlName="phone"
+          [class.ng-touched]="isSubmitted || contactForm.get('phone')!.touched"
+        />
+        <span
+          *ngIf="
+            contactForm.get('phone')!.invalid &&
+            (contactForm.get('phone')!.touched || isSubmitted)
+          "
+          class="error"
+        >
+          <span *ngIf="contactForm.get('phone')!.hasError('required')">
+            Số điện thoại phải nhập
+          </span>
+        </span>
+  
+        <textarea
+          name="message"
+          placeholder="tin nhắn"
+          cols="30"
+          rows="10"
+          class="box"
+          formControlName="message"
+          [class.ng-touched]="isSubmitted || contactForm.get('message')!.touched"
+        ></textarea>
+        <span
+          *ngIf="
+            contactForm.get('message')!.invalid &&
+            (contactForm.get('message')!.touched || isSubmitted)
+          "
+          class="error"
+        >
+          <span *ngIf="contactForm.get('message')!.hasError('required')">
+            Tin nhắn phải nhập
+          </span>
+        </span>
+  
+        <input type="submit" value="Gửi" name="send" class="btn" />
+      </form>
+    </div>
+  </section>
+  
+  <!-- contact section ends -->
+  
+  <!-- faq section starts  -->
+  
+  <section class="faq" id="faq">
+    <h1 class="heading">FAQ</h1>
+  
+    <div class="box-container">
+      <div class="box active">
+        <h3>
+          <span>Các thể loại bài đăng?</span><i class="fas fa-angle-down"></i>
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum
+          ab.
+        </p>
+      </div>
+  
+      <div class="box active">
+        <h3>
+          <span>Địa điểm của các bài đăng?</span
+          ><i class="fas fa-angle-down"></i>
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum
+          ab.
+        </p>
+      </div>
+  
+      <div class="box">
+        <h3>
+          <span>Bài đăng của bạn không tìm thấy?</span><i class="fas fa-angle-down"></i>
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum
+          ab.
+        </p>
+      </div>
+  
+      <div class="box">
+        <h3>
+          <span>Cách liên hệ người đăng tin?</span
+          ><i class="fas fa-angle-down"></i>
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum
+          ab.
+        </p>
+      </div>
+  
+      <div class="box">
+        <h3>
+          <span>Liên hệ hỗ trợ?</span
+          ><i class="fas fa-angle-down"></i>
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum
+          ab.
+        </p>
+      </div>
+  
+      <div class="box">
+        <h3>
+          <span>Bạn muốn quảng cáo bài đăng của mình?</span><i class="fas fa-angle-down"></i>
+        </h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus
+          veritatis ducimus aut accusantium sunt error esse laborum cumque ipsum
+          ab.
+        </p>
+      </div>
+    </div>
+  </section>
+  

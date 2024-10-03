@@ -1,0 +1,94 @@
+<header class="header">
+  <nav class="navbar nav-1">
+    <section class="flex">
+      <a class="logo"><i class="fas fa-house"></i>Trang chủ</a>
+
+      <ul>
+        <li>
+          <a>Tạo bài đăng<i class="fa-solid fa-plus"></i></a>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+  <nav class="navbar nav-2">
+    <section class="flex">
+      <div id="menu-btn" class="fas fa-bars"></div>
+
+      <div class="menu">
+        <ul>
+          <li>
+            <a href="#" (click)="(false)">Bài đăng<i class="fas fa-angle-down"></i></a>
+            <ul>
+              <li>
+                <a>Tìm kiếm</a>
+              </li>
+              <li>
+                <a>Tất cả</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" (click)="(false)">Thông tin<i class="fas fa-angle-down"></i></a>
+            <ul>
+              <li>
+                <a routerLink="/about">Về chúng tôi</a>
+              </li>
+              <li>
+                <a routerLink="/contact">Liên hệ</a>
+              </li>
+              <li>
+                <a href="/contact#faq">FAQ</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <!-- @if (_userService.currentUser(); as user) { -->
+      <ul>
+        <li>
+          <a>Tin nhắn</a>
+        </li>
+        <li>
+          <a>Đã lưu<i class="far fa-heart"></i></a>
+        </li>
+        <li>
+          <a href="#" (click)="(false)">Username <i class="fas fa-angle-down"></i></a>
+          <ul>
+            <li>
+              <a>Thống kê</a>
+            </li>
+            <li>
+              <a>Tạo bài đăng</a>
+            </li>
+            <li>
+              <a>Đã đăng</a>
+            </li>
+            <li>
+              <a>Tài khoản</a>
+            </li>
+            <li>
+              <a href="#">Đăng xuất</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- } @else { -->
+      <ul>
+        <li>
+          <a href="#" (click)="(false)">Tài khoản <i class="fas fa-angle-down"></i></a>
+          <ul>
+            <li>
+              <a>Đăng nhập</a>
+            </li>
+            <li>
+              <a>Đăng ký</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <!-- } -->
+    </section>
+  </nav>
+</header>

@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/alertifyjs/build/css/alertify.min.css";
+@import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+
+.alertify-notifier {
+  font-size: 1.4rem;
+}
+
+.ng-invalid.ng-touched {
+  border-color: red !important;
+}
+.ng-invalid.ng-touched::placeholder {
+  color: red !important;
+  opacity: 1;
+}
+.error {
+  color: red;
+  font-size: 1.4rem;
+}

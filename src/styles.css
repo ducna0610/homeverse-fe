@@ -4,3 +4,15 @@
 .alertify-notifier {
   font-size: 1.4rem;
 }
+
+.ng-invalid.ng-touched {
+  border-color: red !important;
+}
+.ng-invalid.ng-touched::placeholder {
+  color: red !important;
+  opacity: 1;
+}
+.error {
+  color: red;
+  font-size: 1.4rem;
+}

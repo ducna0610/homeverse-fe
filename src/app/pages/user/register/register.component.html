@@ -1,0 +1,77 @@
+<section class="form-container">
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <h3>Tạo tài khoản</h3>
+        <input type="text" name="userName" placeholder="tên" class="box" formControlName="userName"
+            [class.ng-touched]="isSubmitted || registerForm.get('userName')!.touched" />
+        <span *ngIf="
+          registerForm.get('userName')!.invalid &&
+          (registerForm.get('userName')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="registerForm.get('userName')!.hasError('required')">
+                Tên phải nhập
+            </span>
+        </span>
+
+        <input type="email" name="email" placeholder="email" class="box" formControlName="email"
+            [class.ng-touched]="isSubmitted || registerForm.get('email')!.touched" />
+        <span *ngIf="
+          registerForm.get('email')!.invalid &&
+          (registerForm.get('email')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="registerForm.get('email')!.hasError('required')">
+                Email phải nhập
+            </span>
+            <span *ngIf="registerForm.get('email')!.hasError('email')">
+                Email không hợp lệ
+            </span>
+        </span>
+
+        <input type="tel" name="phone" placeholder="số điện thoại" class="box" formControlName="phone"
+            [class.ng-touched]="isSubmitted || registerForm.get('phone')!.touched" />
+        <span *ngIf="
+          registerForm.get('phone')!.invalid &&
+          (registerForm.get('phone')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="registerForm.get('phone')!.hasError('required')">
+                Số điện thoại phải nhập
+            </span>
+        </span>
+
+        <input type="password" name="password" placeholder="mật khẩu" class="box" formControlName="password"
+            [class.ng-touched]="isSubmitted || registerForm.get('password')!.touched" />
+        <span *ngIf="
+          registerForm.get('password')!.invalid &&
+          (registerForm.get('password')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="registerForm.get('password')!.hasError('required')">
+                Mật khẩu phải nhập
+            </span>
+            <span *ngIf="registerForm.get('password')!.hasError('minlength')">
+                Mật khẩu có ít nhất 8 kí tự
+            </span>
+        </span>
+
+        <input type="password" name="confirmPassword" placeholder="xác nhận mật khẩu" class="box"
+            formControlName="confirmPassword" [class.ng-touched]="
+          isSubmitted || registerForm.get('confirmPassword')!.touched
+        " />
+        <span *ngIf="
+          registerForm.get('confirmPassword')!.invalid &&
+          (registerForm.get('confirmPassword')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="registerForm.get('confirmPassword')!.hasError('required')">
+                Xác nhận mật khẩu phải nhập
+            </span>
+            <div *ngIf="registerForm.get('confirmPassword')!.hasError('notmatched')">
+                Xác nhận mật khẩu không khớp
+            </div>
+        </span>
+
+        <input type="submit" value="Đăng ký" name="submit" class="btn" />
+
+        <p style="margin-top: 1rem">
+            đã có tài khoản?
+            <a routerLink="/login">đăng nhập</a>
+        </p>
+    </form>
+</section>

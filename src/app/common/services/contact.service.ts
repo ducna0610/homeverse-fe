@@ -17,8 +17,8 @@ export class ContactService {
     return this.http.get<ContactResponse[]>(this.apiUrl + '/v1/contacts');
   }
 
-  createContact(contact: ContactRequest) {
-    return this.http.post(this.apiUrl + '/v1/contacts', contact);
+  createContact(request: ContactRequest) {
+    return this.http.post(this.apiUrl + '/v1/contacts', request);
   }
 
   deleteContact(id: number) {

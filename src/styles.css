@@ -1,5 +1,6 @@
 @import "../node_modules/alertifyjs/build/css/alertify.min.css";
 @import "../node_modules/alertifyjs/build/css/themes/bootstrap.min.css";
+@import "ckeditor5/ckeditor5.css";
 
 .alertify-notifier {
   font-size: 1.4rem;
@@ -15,4 +16,11 @@
 .error {
   color: red;
   font-size: 1.4rem;
+}
+
+.ck-editor__editable_inline {
+  min-height: 300px !important;
+}
+.ck.ck-editor__editable_inline > *:first-child {
+  margin-top: 0;
 }

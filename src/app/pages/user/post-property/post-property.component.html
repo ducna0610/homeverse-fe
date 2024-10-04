@@ -1,0 +1,141 @@
+<section class="property-form">
+  <form [formGroup]="createPropertyForm" (ngSubmit)="onSubmit()">
+    <h3>Tạo bài đăng</h3>
+    <div class="box">
+      <p>Tiêu đề <span>*</span></p>
+      <input type="text" name="title" placeholder="nhập tiêu đề" class="input" formControlName="title"
+        [class.ng-touched]="
+            isSubmitted || createPropertyForm.get('title')!.touched
+          " />
+      <span *ngIf="
+            createPropertyForm.get('title')!.invalid &&
+            (createPropertyForm.get('title')!.touched || isSubmitted)
+          " class="error">
+        <span *ngIf="createPropertyForm.get('title')!.hasError('required')">
+          Tiêu đề phải nhập
+        </span>
+      </span>
+    </div>
+    <div class="flex">
+      <div class="box">
+        <p>Giá <span>*</span></p>
+        <input type="number" name="price" placeholder="nhập giá" class="input" formControlName="price"
+          [class.ng-touched]="
+              isSubmitted || createPropertyForm.get('price')!.touched
+            " />
+        <span *ngIf="
+              createPropertyForm.get('price')!.invalid &&
+              (createPropertyForm.get('price')!.touched || isSubmitted)
+            " class="error">
+          <span *ngIf="createPropertyForm.get('price')!.hasError('required')">
+            Giá phải nhập
+          </span>
+        </span>
+      </div>
+      <div class="box">
+        <p>Diện tích <span>*</span></p>
+        <input type="number" name="area" placeholder="nhập diện tích" class="input" formControlName="area"
+          [class.ng-touched]="
+              isSubmitted || createPropertyForm.get('area')!.touched
+            " />
+        <span *ngIf="
+              createPropertyForm.get('area')!.invalid &&
+              (createPropertyForm.get('area')!.touched || isSubmitted)
+            " class="error">
+          <span *ngIf="createPropertyForm.get('area')!.hasError('required')">
+            Diện tích phải nhập
+          </span>
+        </span>
+      </div>
+      <div class="box">
+        <p>Thể loại <span>*</span></p>
+        <select name="category" class="input" formControlName="category">
+          <option *ngFor="let category of categoryTypes" value="{{ category.key }}">
+            {{ category.value }}
+          </option>
+        </select>
+      </div>
+      <div class="box">
+        <p>Nội thất <span>*</span></p>
+        <select name="furnish" class="input" formControlName="furnish">
+          <option *ngFor="let furnish of furnishTypes" value="{{ furnish.key }}">
+            {{ furnish.value }}
+          </option>
+        </select>
+      </div>
+      <div class="box">
+        <p>Thành phố <span>*</span></p>
+        <select name="city" class="input" formControlName="city">
+          <option value="" selected disabled hidden>Chọn thành phố</option>
+          <option *ngFor="let city of cityList" value="{{ city.id }}">
+            {{ city.name }}
+          </option>
+        </select>
+        <span *ngIf="
+              createPropertyForm.get('city')!.invalid &&
+              (createPropertyForm.get('city')!.touched || isSubmitted)
+            " class="error">
+          <span *ngIf="createPropertyForm.get('city')!.hasError('required')">
+            Thành phố phải nhập
+          </span>
+        </span>
+      </div>
+      <div class="box">
+        <p>Trạng thái <span>*</span></p>
+        <select name="isActive" class="input" formControlName="isActive">
+          <option [ngValue]="true">Hiện</option>
+          <option [ngValue]="false">Ẩn</option>
+        </select>
+      </div>
+      <div class="box">
+        <p>Địa chỉ <span>*</span></p>
+        <input #inputField type="text" name="address" placeholder="nhập địa chỉ" class="input" formControlName="address"
+          [class.ng-touched]="
+              isSubmitted || createPropertyForm.get('address')!.touched
+            " />
+        <span *ngIf="
+              createPropertyForm.get('address')!.invalid &&
+              (createPropertyForm.get('address')!.touched || isSubmitted)
+            " class="error">
+          <span *ngIf="createPropertyForm.get('address')!.hasError('required')">
+            Địa chỉ phải nhập
+          </span>
+        </span>
+      </div>
+    </div>
+    <div class="box">
+      <google-map #map width="100%" height="50rem" [center]="center" [zoom]="zoom">
+        <map-marker [position]="markerPosition"> </map-marker>
+      </google-map>
+    </div>
+    <div class="box">
+      <p>Mô tả <span>*</span></p>
+      <ckeditor [editor]="editor" [config]="config" formControlName="description" [class.ng-touched]="
+            isSubmitted || createPropertyForm.get('description')!.touched
+          " style="display: block; margin: 1rem 0"></ckeditor>
+      <span *ngIf="
+            createPropertyForm.get('description')!.invalid &&
+            (createPropertyForm.get('description')!.touched || isSubmitted)
+          " class="error">
+        <span *ngIf="createPropertyForm.get('description')!.hasError('required')">
+          Mô tả phải nhập
+        </span>
+      </span>
+    </div>
+    <div class="box">
+      <p>Upload ảnh</p>
+      <ngx-dropzone (change)="onSelectImage($event)" [expandable]="true"
+        accept="image/jpeg,image/jpg,image/png,image/gif" style="margin: 1rem 0">
+        <ngx-dropzone-label>drag and drop here</ngx-dropzone-label>
+        <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files; first as isFirst"
+          [file]="f" [removable]="true" (removed)="onRemoveImage(f)">
+          <ngx-dropzone-label>@if(isFirst) {
+            <h1>primary</h1>
+            }
+          </ngx-dropzone-label>
+        </ngx-dropzone-image-preview>
+      </ngx-dropzone>
+    </div>
+    <input type="submit" value="Hoàn thành" class="btn" style="margin-top: 2.4rem" name="post" />
+  </form>
+</section>

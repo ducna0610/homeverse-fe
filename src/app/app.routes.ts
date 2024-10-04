@@ -6,6 +6,8 @@ import { RegisterComponent } from './pages/user/register/register.component';
 import { LoginComponent } from './pages/user/login/login.component';
 import { ProfileComponent } from './pages/user/profile/profile.component';
 import { authGuard } from './common/guards/auth.guard';
+import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
+import { PostPropertyComponent } from './pages/user/post-property/post-property.component';
 
 export const routes: Routes = [
     {
@@ -28,6 +30,10 @@ export const routes: Routes = [
                 path: 'login',
                 component: LoginComponent,
             },
+            {
+                path: 'forgot-password',
+                component: ForgotPasswordComponent,
+            },
         ],
     },
     {
@@ -38,6 +44,10 @@ export const routes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent,
+            },
+            {
+                path: 'post-property',
+                component: PostPropertyComponent,
             },
         ],
     },

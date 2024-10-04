@@ -202,6 +202,10 @@ a:hover {
   display: none;
 }
 
+#menu-btn:hover {
+  cursor: pointer;
+}
+
 .home {
   background: url("/assets/images/home-bg.jpg") no-repeat;
   background-size: cover;

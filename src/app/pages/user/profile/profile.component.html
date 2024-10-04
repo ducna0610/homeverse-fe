@@ -1,0 +1,84 @@
+<section class="form-container">
+  <form [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()">
+    <h3>Cập nhật tài khoản</h3>
+    <input type="text" name="name" placeholder="tên" class="box" formControlName="userName" [class.ng-touched]="
+          isSubmitted || updateProfileForm.get('userName')!.touched
+        " />
+    <span *ngIf="
+          updateProfileForm.get('userName')!.invalid &&
+          (updateProfileForm.get('userName')!.touched || isSubmitted)
+        " class="error">
+      <span *ngIf="updateProfileForm.get('userName')!.hasError('required')">
+        Tên phải nhập
+      </span>
+    </span>
+
+    <input type="email" name="email" placeholder="email" class="box" readonly formControlName="email"
+      [class.ng-touched]="
+          isSubmitted || updateProfileForm.get('email')!.touched
+        " />
+    <span *ngIf="
+          updateProfileForm.get('email')!.invalid &&
+          (updateProfileForm.get('email')!.touched || isSubmitted)
+        " class="error">
+      <span *ngIf="updateProfileForm.get('email')!.hasError('required')">
+        Email phải nhập
+      </span>
+      <span *ngIf="updateProfileForm.get('email')!.hasError('email')">
+        Email không hợp lệ
+      </span>
+    </span>
+
+    <input type="tel" name="phone" placeholder="Số điện thoại" class="box" formControlName="phone" [class.ng-touched]="
+          isSubmitted || updateProfileForm.get('phone')!.touched
+        " />
+    <span *ngIf="
+          updateProfileForm.get('phone')!.invalid &&
+          (updateProfileForm.get('phone')!.touched || isSubmitted)
+        " class="error">
+      <span *ngIf="updateProfileForm.get('phone')!.hasError('required')">
+        Số điện thoại phải nhập
+      </span>
+    </span>
+
+    <input type="password" name="old_pass" maxlength="20" placeholder="Mật khẩu" class="box" formControlName="password"
+      [class.ng-touched]="
+          isSubmitted || updateProfileForm.get('password')!.touched
+        " />
+    <span *ngIf="
+          updateProfileForm.get('password')!.invalid &&
+          (updateProfileForm.get('password')!.touched || isSubmitted)
+        " class="error">
+      <span *ngIf="updateProfileForm.get('password')!.hasError('required')">
+        Mật khẩu phải nhập
+      </span>
+    </span>
+
+    <input type="password" name="new_pass" maxlength="20" placeholder="Mật khẩu mới (optional)" class="box"
+      formControlName="newPassword" [class.ng-touched]="
+          isSubmitted || updateProfileForm.get('newPassword')!.touched
+        " />
+    <span *ngIf="
+          updateProfileForm.get('newPassword')!.invalid &&
+          (updateProfileForm.get('newPassword')!.touched || isSubmitted)
+        " class="error">
+      <span *ngIf="updateProfileForm.get('newPassword')!.hasError('minlength')">
+        Mật khẩu mới có ít nhất 8 kí tự
+      </span>
+    </span>
+
+    <input type="password" name="c_pass" maxlength="20" placeholder="Xác nhận mật khẩu mới" class="box"
+      formControlName="confirmNewPassword" [class.ng-touched]="
+          isSubmitted || updateProfileForm.get('confirmNewPassword')!.touched
+        " />
+    <span *ngIf="
+          updateProfileForm.get('confirmNewPassword')!.invalid &&
+          (updateProfileForm.get('confirmNewPassword')!.touched || isSubmitted)
+        " class="error">
+      <div *ngIf="updateProfileForm.get('confirmPassword')!.hasError('notmatched')">
+        Xác nhận mật khẩu mới không khớp
+      </div>
+    </span>
+    <input type="submit" value="Cập nhật" name="submit" class="btn" />
+  </form>
+</section>

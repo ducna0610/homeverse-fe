@@ -15,16 +15,16 @@ import { AlertifyService } from '../../../common/services/alertify.service';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })
-export class ContactComponent { 
+export class ContactComponent {
   contactForm!: FormGroup;
   isSubmitted = false;
 
   constructor(
     private renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,
+    @Inject(DOCUMENT) private document: Document,
     private fb: FormBuilder,
     private contactService: ContactService,
-    private alertifyService: AlertifyService
+    private alertifyService: AlertifyService,
   ) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ContactComponent {
         });
     `;
 
-    this.renderer2.appendChild(this._document.body, script);
+    this.renderer2.appendChild(this.document.body, script);
 
     this.contactForm = this.fb.group({
       name: ['', Validators.required],

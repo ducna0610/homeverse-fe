@@ -36,7 +36,7 @@ export class UserService {
   }
 
   updateProfile(request: UpdateUserRequest): Observable<UserResponse> {
-    return this.httpClient.put<UserResponse>(this.apiUrl + '/users/profile', request).pipe(
+    return this.httpClient.put<UserResponse>(this.apiUrl + '/v1/users/profile', request).pipe(
       map((response: UserResponse) => {
         this.setCurrentUser();
         return response;

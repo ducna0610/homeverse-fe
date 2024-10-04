@@ -4,6 +4,7 @@ import { LoginRequest, RegisterRequest, UpdateUserRequest, UserResponse } from '
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
+import dataHelper from '../helpers/data.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +49,11 @@ export class UserService {
     localStorage.removeItem('token');
     this.currentUser.set(null);
   }
+
+  forgotPassword(email: string) {
+    return this.httpClient.post(this.apiUrl + '/v1/users/forgot-password', dataHelper.objectToFormData({ email }));
+  }
+
 
   getToken() {
     return localStorage.getItem('token') ?? '';

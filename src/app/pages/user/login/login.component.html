@@ -1,0 +1,39 @@
+<section class="form-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <h3>welcome back!</h3>
+        <input type="email" name="email" placeholder="email" class="box" formControlName="email"
+            [class.ng-touched]="isSubmitted || loginForm.get('email')!.touched" />
+        <span *ngIf="
+          loginForm.get('email')!.invalid &&
+          (loginForm.get('email')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="loginForm.get('email')!.hasError('required')">
+                Nhập email
+            </span>
+            <span *ngIf="loginForm.get('email')!.hasError('email')">
+                Email không hợp lệ
+            </span>
+        </span>
+
+        <input type="password" name="password" placeholder="mật khẩu" class="box" formControlName="password"
+            [class.ng-touched]="isSubmitted || loginForm.get('password')!.touched" />
+        <span *ngIf="
+          loginForm.get('password')!.invalid &&
+          (loginForm.get('password')!.touched || isSubmitted)
+        " class="error">
+            <span *ngIf="loginForm.get('password')!.hasError('required')">
+                Nhập mật khẩu
+            </span>
+        </span>
+
+        <input type="submit" value="Đăng nhập" name="submit" class="btn" />
+        <p style="margin-top: 1rem">
+            chưa có tài khoản?
+            <a routerLink="register" routerLinkActive="router-link-active">đăng ký</a>
+        </p>
+        <p>
+            quên mật khẩu?
+            <a routerLink="/forgot-password">tạo mật khẩu mới</a>
+        </p>
+    </form>
+</section>

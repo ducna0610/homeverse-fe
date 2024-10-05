@@ -9,6 +9,7 @@ import { authGuard } from './common/guards/auth.guard';
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { PostPropertyComponent } from './pages/user/post-property/post-property.component';
 import { HomeComponent } from './pages/user/home/home.component';
+import { PropertyDetailComponent } from './pages/user/property-detail/property-detail.component';
 
 export const routes: Routes = [
     {
@@ -49,6 +50,10 @@ export const routes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent,
+            },
+            {
+                path: 'property-detail/:id',
+                component: PropertyDetailComponent,
             },
             {
                 path: 'post-property',

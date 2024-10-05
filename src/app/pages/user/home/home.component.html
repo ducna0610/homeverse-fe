@@ -1,0 +1,101 @@
+<!-- home section starts  -->
+
+<div class="home">
+    <section class="center">
+    </section>
+  </div>
+  
+  <!-- home section ends -->
+  
+  <!-- services section starts  -->
+  
+  <section class="services">
+    <h1 class="heading">our services</h1>
+  
+    <div class="box-container">
+      <div class="box">
+        <img src="images/icon-1.png" alt="" />
+        <h3>Mua nhà</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+          incidunt.
+        </p>
+      </div>
+  
+      <div class="box">
+        <img src="images/icon-2.png" alt="" />
+        <h3>Thuê nhà</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+          incidunt.
+        </p>
+      </div>
+  
+      <div class="box">
+        <img src="images/icon-3.png" alt="" />
+        <h3>Rao bán</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+          incidunt.
+        </p>
+      </div>
+  
+      <div class="box">
+        <img src="images/icon-4.png" alt="" />
+        <h3>flats and buildings</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+          incidunt.
+        </p>
+      </div>
+  
+      <div class="box">
+        <img src="images/icon-5.png" alt="" />
+        <h3>shops and malls</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+          incidunt.
+        </p>
+      </div>
+  
+      <div class="box">
+        <img src="images/icon-6.png" alt="" />
+        <h3>24/7 service</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque,
+          incidunt.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- services section ends -->
+  
+  <!-- listings section starts  -->
+  
+  <section class="listings">
+    <h1 class="heading">Bài đăng mới nhất</h1>
+    <div class="box-container">
+      @for (property of properties; track property.id) {
+      <app-property-card
+        [property]="property"
+      ></app-property-card>
+      } @empty {
+      <p class="empty">
+        Chưa có bài đăng nào!
+        <a
+          routerLink="/post-property"
+          style="margin-top: 1.5rem"
+          class="btn"
+          >Thêm mới</a
+        >
+      </p>
+      }
+    </div>
+    <div style="margin-top: 2rem; text-align: center">
+      <a routerLink="listings" class="inline-btn">Xem tất cả</a>
+    </div>
+  </section>
+  
+  <!-- listings section ends -->
+  

@@ -1,0 +1,44 @@
+<form>
+  <div class="box">
+    <div class="thumb">
+      <p class="total-images">
+        <i class="far fa-image"></i><span>{{ property.numberImage }}</span>
+      </p>
+      <img src="{{ property.imageUrl }}" alt="" />
+    </div>
+    <div class="admin">
+      <h3><i class="fa-solid fa-user"></i></h3>
+      <div>
+        <p>{{ property.postedBy.name }}</p>
+        <span>{{ property.createdAt | timeago }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="box">
+    <h3 class="name">{{ property.title }}</h3>
+    <p class="location">
+      <i class="fa-solid fa-city"></i><span>{{ property.city }}</span>
+    </p>
+    <p class="location">
+      <i class="fas fa-map-marker-alt"></i><span>{{ property.address }}</span>
+    </p>
+    <div class="flex">
+      <p>
+        <i class="fa-solid fa-coins"></i><span>{{ property.price }}vnd</span>
+      </p>
+      <p>
+        <i class="fas fa-maximize"></i><span>{{ property.area }}m2</span>
+      </p>
+      <p>
+        <i class="fas fa-house"></i><span>{{ property.category }}</span>
+      </p>
+      <p>
+        <i class="fas fa-couch"></i><span>{{ property.furnish }}</span>
+      </p>
+    </div>
+    <div class="flex-btn">
+      <a routerLink="/property-detail/{{ property.id }}" class="btn">Xem chi tiết</a>
+      <a routerLink="/message/{{ property.postedBy.id }}" class="btn">Liên hệ</a>
+    </div>
+  </div>
+</form>

@@ -8,12 +8,17 @@ import { ProfileComponent } from './pages/user/profile/profile.component';
 import { authGuard } from './common/guards/auth.guard';
 import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-password.component';
 import { PostPropertyComponent } from './pages/user/post-property/post-property.component';
+import { HomeComponent } from './pages/user/home/home.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: UserComponent,
         children: [
+            {
+                path: '',
+                component: HomeComponent,
+            },
             {
                 path: 'about',
                 component: AboutComponent,

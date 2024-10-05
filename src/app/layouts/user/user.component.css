@@ -207,7 +207,7 @@ a:hover {
 }
 
 .home {
-  background: url("/assets/images/home-bg.jpg") no-repeat;
+  background: url("/images/home-bg.jpg") no-repeat;
   background-size: cover;
   background-position: center;
 }

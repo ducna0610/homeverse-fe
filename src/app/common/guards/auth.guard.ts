@@ -7,7 +7,7 @@ export const authGuard: CanActivateFn = (childRoute, state) => {
   const userService = inject(UserService);
   const alertifyService = inject(AlertifyService);
 
-  if (userService.currentUser()) return true;
+  if (userService.getDecodeToken()) return true;
   else {
       alertifyService.error('Bạn cần đăng nhập để tiếp tục!');
       return false;

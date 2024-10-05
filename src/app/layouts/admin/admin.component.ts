@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 import { AdminHeaderComponent } from '../../core-ui/components/admin-header/admin-header.component';
 
 @Component({
@@ -8,7 +8,7 @@ import { AdminHeaderComponent } from '../../core-ui/components/admin-header/admi
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterOutlet,
     AdminHeaderComponent,
   ],
   templateUrl: './admin.component.html',

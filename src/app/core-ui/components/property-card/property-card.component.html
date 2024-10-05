@@ -1,5 +1,12 @@
 <form>
   <div class="box">
+    <button type="button" name="save" class="save" (click)="setBookmark()">
+      @if(isBookmarked()) {
+      <i class="fas fa-heart"></i><span>Đã lưu</span>
+      } @else {
+      <i class="far fa-heart"></i><span>Lưu</span>
+      }
+    </button>
     <div class="thumb">
       <p class="total-images">
         <i class="far fa-image"></i><span>{{ property.numberImage }}</span>

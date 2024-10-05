@@ -3,6 +3,7 @@ import { Component, Inject, Renderer2 } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AlertifyService } from '../../../common/services/alertify.service';
 import { UserService } from '../../../common/services/user.service';
+import { PropertyService } from '../../../common/services/property.service';
 
 @Component({
   selector: 'app-user-header',
@@ -23,6 +24,7 @@ export class UserHeaderComponent {
     @Inject(DOCUMENT) private document: Document,
     private alertifyService: AlertifyService,
     public userService: UserService,
+    private propertyService: PropertyService,
   ) { }
 
   ngOnInit() {
@@ -48,6 +50,10 @@ export class UserHeaderComponent {
     `;
 
     this.renderer2.appendChild(this.document.body, script);
+
+    this.propertyService.bookmarks$.subscribe(
+      data => this.totalBookmarked = data.length
+    )
   }
 
   onLogout() {

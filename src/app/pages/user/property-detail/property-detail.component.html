@@ -1,0 +1,110 @@
+<section class="view-property">
+    <h1 class="heading">Chi tiết bài đăng</h1>
+    @if(property) {
+    <div class="details">
+      <div class="images-container">
+        <swiper-container
+          initial-slide="1"
+          navigation="true"
+          pagination="true"
+          effect="coverflow"
+          grab-cursor="true"
+          slides-per-view="auto"
+          centered-slides="true"
+          coverflow-effect-rotate="0"
+          coverflow-effect-stretch="0"
+          coverflow-effect-depth="200"
+          coverflow-effect-modifier="3"
+          coverflow-effect-slide-shadows="true"
+        >
+          @for(photo of property.photos; track $index) {
+          <img src="{{ photo.imageUrl }}" alt="" class="swiper-slide" />
+          }
+        </swiper-container>
+      </div>
+      <h3 class="name">{{ property.title }}</h3>
+      <p class="location">
+        <i class="fa-solid fa-city"></i><span>{{ property.city }}</span>
+      </p>
+      <p class="location">
+        <i class="fas fa-map-marker-alt"></i><span>{{ property.address }}</span>
+      </p>
+      <div class="info">
+        <p>
+          <i class="fas fa-user"></i><span>{{ property.postedBy.name }}</span>
+        </p>
+        <p>
+          <i class="fas fa-phone"></i
+          ><a href="tel:{{ property.postedBy.phone }}">{{
+            property.postedBy.phone
+          }}</a>
+        </p>
+        <p>
+          <i class="fa-solid fa-envelope"></i
+          ><a href="mailto:{{ property.postedBy.email }}">{{
+            property.postedBy.email
+          }}</a>
+        </p>
+        <p>
+          <i class="fas fa-calendar"></i
+          ><span>{{ property.createdAt | date : "dd-MM-yyyy" }}</span>
+        </p>
+      </div>
+      <h3 class="title">Thông tin</h3>
+      <div class="flex">
+        <div class="box">
+          <p>
+            <i>Giá :</i><span>{{ property.price }} vnd</span>
+          </p>
+          <p>
+            <i>Diện tích :</i><span>{{ property.area }} m2</span>
+          </p>
+        </div>
+        <div class="box">
+          <p>
+            <i>Thể loại :</i><span>{{ property.category }}</span>
+          </p>
+          <p>
+            <i>Nội thất :</i><span>{{ property.furnish }}</span>
+          </p>
+        </div>
+      </div>
+      @if (property.lat && property.lng) {
+      <google-map
+        #map
+        width="100%"
+        height="50rem"
+        [center]="center"
+        [zoom]="zoom"
+      >
+        <map-marker [position]="markerPosition"> </map-marker>
+      </google-map>
+      }
+      <h3 class="title">Mô tả</h3>
+      <div class="description" [innerHTML]="property.description"></div>
+      <form class="flex-btn">
+        <button type="button" name="save" class="save" (click)="propertyService.setBookmark(property)">
+          @if(propertyService.isBookmarked(property.id)) {
+          <i class="fas fa-heart"></i><span>Đã lưu</span>
+          } @else {
+          <i class="far fa-heart"></i><span>Lưu</span>
+          }
+        </button>
+        <a (click)="backClicked()" class="btn">Quay lại</a>
+        <a routerLink="/message/{{ property.postedBy.id }}" class="btn">Liên hệ</a>
+      </form>
+    </div>
+    } @else {
+    <p class="empty">
+        Không tìm thấy bài đăng!
+      <a
+        [routerLink]="['/post-property']"
+        routerLinkActive="router-link-active"
+        style="margin-top: 1.5rem"
+        class="btn"
+        >Thêm mới</a
+      >
+    </p>
+    }
+  </section>
+  

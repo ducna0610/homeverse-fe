@@ -1,0 +1,23 @@
+<section class="listings">
+    <h1 class="heading">Đã lưu</h1>
+  
+    <div class="box-container">
+      @for (property of properties; track property.id) {
+      <app-property-card
+        [property]="property"
+        (removePropertyEvent)="removeProperty($event)"
+      ></app-property-card>
+      } @empty {
+      <p class="empty">
+        Chưa có bài đăng được lưu!
+        <a
+          routerLink="/listings"
+          style="margin-top: 1.5rem"
+          class="btn"
+          >Xem thêm</a
+        >
+      </p>
+      }
+    </div>
+  </section>
+  

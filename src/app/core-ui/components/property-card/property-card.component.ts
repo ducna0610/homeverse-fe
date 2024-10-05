@@ -3,6 +3,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PropertyResponse } from '../../../common/models/property';
 import { RouterModule } from '@angular/router';
 import { TimeagoPipe } from '../../pipes/timeago.pipe';
+import { PropertyService } from '../../../common/services/property.service';
+import { AlertifyService } from '../../../common/services/alertify.service';
 
 @Component({
   selector: 'app-property-card',
@@ -18,5 +20,27 @@ import { TimeagoPipe } from '../../pipes/timeago.pipe';
 export class PropertyCardComponent {
 
   @Input() property!: PropertyResponse;
+  @Output() removePropertyEvent = new EventEmitter<number>();
 
+  constructor(
+    private propertyService: PropertyService, 
+    private alertifyService: AlertifyService
+  ) { }
+
+  isBookmarked() {
+    return this.propertyService.isBookmarked(this.property.id);
+  }
+
+  setBookmark() {
+    if (this.isBookmarked()) {
+      this.removePropertyEvent.emit(this.property.id);
+      this.alertifyService.success("Đã xóa");
+      console.log(this.property.id);
+      
+      this.propertyService.deleteBookmark(this.property.id).subscribe();
+    } else {
+      this.alertifyService.success("Đã lưu");
+      this.propertyService.createBookmark(this.property).subscribe();
+    }
+  }
 }

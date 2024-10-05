@@ -9,6 +9,7 @@ import { PropertyRequest } from '../../../common/models/property';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-post-property',
@@ -42,7 +43,8 @@ export class PostPropertyComponent {
       private fb: FormBuilder,
       private propertyService: PropertyService,
       private alertifyService: AlertifyService,
-      private ngZone: NgZone
+      private router: Router,
+      private ngZone: NgZone,
     ) { }
 
   ngOnInit() {
@@ -88,13 +90,12 @@ export class PostPropertyComponent {
       images: this.files,
       isActive: this.createPropertyForm.value.isActive
     };
-    console.log(request);
-
 
     if (this.createPropertyForm.valid) {
       this.propertyService.createProperty(request).subscribe(
-        () => {
+        response => {
           this.alertifyService.success('Tạo bài đăng thành công');
+          this.router.navigate(['/property-detail', response.id]);
         }
       );
     } else {

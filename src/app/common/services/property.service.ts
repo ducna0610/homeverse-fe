@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, take } from 'rxjs';
 import { PropertyDetailResponse, PropertyRequest, PropertyResponse } from '../models/property';
 import { HttpClient } from '@angular/common/http';
 import { KeyValuePair } from '../models/keyvaluepair';
@@ -41,8 +41,8 @@ export class PropertyService {
     return this.http.get<PropertyDetailResponse[]>(this.apiUrl + '/v1/properties/user');
   }
 
-  createProperty(property: PropertyRequest) {
-    return this.http.post(this.apiUrl + '/v1/properties', dataHelper.objectToFormData(property));
+  createProperty(property: PropertyRequest): Observable<PropertyResponse> {
+    return this.http.post<PropertyResponse>(this.apiUrl + '/v1/properties', dataHelper.objectToFormData(property));
   }
 
   updateProperty(id: number, property: PropertyRequest) {
@@ -57,5 +57,55 @@ export class PropertyService {
     return this.http.get(imageUrl, {
       responseType: "blob"
     });
+  }
+
+  getBookmarks(): Observable<PropertyResponse[]> {
+    return this.http.get<PropertyResponse[]>(this.apiUrl + '/v1/properties/bookmarks');
+  }
+
+  setBookmarks() {
+    this.getBookmarks().subscribe( bookmarks =>
+      this.bookmarksSource.next(bookmarks)
+    )
+  }
+
+  clearBookmarks() {
+    this.bookmarksSource.next([]);
+  }
+
+  isBookmarked(id: number): boolean {
+    var isBookmarked = false;
+    this.bookmarks$.subscribe(bookmark => {
+      if (bookmark.some(x => x.id === id)) {
+        isBookmarked = true;
+      }
+    })
+    return isBookmarked;
+  }
+
+  createBookmark(property: PropertyResponse): Observable<any> {
+    this.bookmarks$.pipe(take(1)).subscribe({
+      next: bookmarks => {
+        this.bookmarksSource.next([...bookmarks, property]);
+      }
+    })
+    return this.http.post<any>(this.apiUrl + '/v1/properties/add-bookmark/' + property.id, {});
+  }
+
+  deleteBookmark(id: number): Observable<any> {
+    this.bookmarks$.pipe(take(1)).subscribe({
+      next: bookmarks => {
+        this.bookmarksSource.next([...bookmarks.filter(x => x.id !== id)]);
+      }
+    })
+    return this.http.delete<any>(this.apiUrl + '/v1/properties/delete-bookmark/' + id);
+  }
+
+  setBookmark(property: PropertyResponse) {
+    if (this.isBookmarked(property.id)) {
+      this.deleteBookmark(property.id).subscribe()
+    } else {
+      this.createBookmark(property).subscribe()
+    }
   }
 }

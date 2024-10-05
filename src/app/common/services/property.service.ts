@@ -41,8 +41,8 @@ export class PropertyService {
     return this.http.get<PropertyDetailResponse[]>(this.apiUrl + '/v1/properties/user');
   }
 
-  createProperty(property: PropertyRequest) {
-    return this.http.post(this.apiUrl + '/v1/properties', dataHelper.objectToFormData(property));
+  createProperty(property: PropertyRequest): Observable<PropertyResponse> {
+    return this.http.post<PropertyResponse>(this.apiUrl + '/v1/properties', dataHelper.objectToFormData(property));
   }
 
   updateProperty(id: number, property: PropertyRequest) {

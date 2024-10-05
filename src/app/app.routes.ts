@@ -10,6 +10,7 @@ import { ForgotPasswordComponent } from './pages/user/forgot-password/forgot-pas
 import { PostPropertyComponent } from './pages/user/post-property/post-property.component';
 import { HomeComponent } from './pages/user/home/home.component';
 import { PropertyDetailComponent } from './pages/user/property-detail/property-detail.component';
+import { SavedComponent } from './pages/user/saved/saved.component';
 
 export const routes: Routes = [
     {
@@ -58,6 +59,10 @@ export const routes: Routes = [
             {
                 path: 'post-property',
                 component: PostPropertyComponent,
+            },
+            {
+                path: 'saved',
+                component: SavedComponent,
             },
         ],
     },

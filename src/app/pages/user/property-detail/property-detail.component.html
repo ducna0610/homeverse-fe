@@ -83,6 +83,13 @@
       <h3 class="title">Mô tả</h3>
       <div class="description" [innerHTML]="property.description"></div>
       <form class="flex-btn">
+        <button type="button" name="save" class="save" (click)="propertyService.setBookmark(property)">
+          @if(propertyService.isBookmarked(property.id)) {
+          <i class="fas fa-heart"></i><span>Đã lưu</span>
+          } @else {
+          <i class="far fa-heart"></i><span>Lưu</span>
+          }
+        </button>
         <a (click)="backClicked()" class="btn">Quay lại</a>
         <a routerLink="/message/{{ property.postedBy.id }}" class="btn">Liên hệ</a>
       </form>

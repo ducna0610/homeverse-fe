@@ -35,7 +35,7 @@ export class PropertyDetailComponent {
   (
     private route: ActivatedRoute,
     private location: Location,
-    public propertyService: PropertyService
+    public propertyService: PropertyService,
   ) { }
 
   ngOnInit() {

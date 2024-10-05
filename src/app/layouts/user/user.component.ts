@@ -2,14 +2,14 @@ import { CommonModule } from '@angular/common';
 import { Component, ViewEncapsulation } from '@angular/core';
 import { UserHeaderComponent } from '../../core-ui/components/user-header/user-header.component';
 import { UserFooterComponent } from '../../core-ui/components/user-footer/user-footer.component';
-import { RouterModule } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterOutlet,
     UserHeaderComponent,
     UserFooterComponent,
   ],

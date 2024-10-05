@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from './common/services/user.service';
+import { PropertyService } from './common/services/property.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,11 @@ export class AppComponent {
 
   constructor(
     private userService: UserService,
+    private propertyService: PropertyService,
   ) {
     userService.setCurrentUser();
+    if (userService.getDecodeToken()) {
+      propertyService.setBookmarks();
+    }
   }
 }

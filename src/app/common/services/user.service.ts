@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
 import dataHelper from '../helpers/data.helper';
+import { PropertyService } from './property.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class UserService {
 
   constructor(
     private httpClient: HttpClient, 
+    private propetyService: PropertyService,
   ) { }
 
   register(request: RegisterRequest) {
@@ -48,6 +50,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
     this.currentUser.set(null);
+    this.propetyService.clearBookmarks();
   }
 
   forgotPassword(email: string) {
@@ -76,7 +79,10 @@ export class UserService {
       return;
     }
     this.getProfile().subscribe(
-      response => this.currentUser.set(response)
+      response => {
+        this.currentUser.set(response);
+        this.propetyService.setBookmarks();
+      }
     );
   }
 }

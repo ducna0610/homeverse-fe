@@ -17,11 +17,7 @@ export class AppComponent {
 
   constructor(
     private userService: UserService,
-    private propertyService: PropertyService,
   ) {
     userService.setCurrentUser();
-    if (userService.getDecodeToken()) {
-      propertyService.setBookmarks();
-    }
   }
 }

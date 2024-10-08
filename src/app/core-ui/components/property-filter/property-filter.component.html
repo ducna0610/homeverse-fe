@@ -1,0 +1,42 @@
+<form>
+  <h3>Lựa chọn của bạn</h3>
+  <div class="box">
+    <p>Địa chỉ</p>
+    <input [(ngModel)]="propertyParam.address" type="text" name="address" placeholder="Nhập địa chỉ" class="input" />
+  </div>
+  <div class="flex">
+    <div class="box">
+      <p>Thành phố <span>*</span></p>
+      <select [(ngModel)]="propertyParam.city" name="city" class="input">
+        <option value="">Tất cả</option>
+        <option *ngFor="let city of cityList" value="{{ city.name }}">
+          {{ city.name }}
+        </option>
+      </select>
+    </div>
+    <div class="box">
+      <p>Thể loại <span>*</span></p>
+      <select  [(ngModel)]="propertyParam.category" name="category" class="input">
+        <option value="">Tất cả</option>
+        <option *ngFor="let category of categoryTypes" value="{{ category.value }}">
+          {{ category.value }}
+        </option>
+      </select>
+    </div>
+    <div class="box">
+      <p>Sắp xếp theo <span>*</span></p>
+      <select name="sortBy" [(ngModel)]="propertyParam.sortBy" class="input">
+        <option *ngFor="let sortBy of sortList" value="{{ sortBy.value }}">
+          {{ sortBy.displayName }}
+        </option>
+      </select>
+    </div>
+    <div class="box">
+      <p>Thứ tự <span>*</span></p>
+      <select name="sortDirection" [(ngModel)]="propertyParam.sortDirection" class="input">
+        <option value="asc">Tăng dần</option>
+        <option value="desc">Giảm dần</option>
+      </select>
+    </div>
+  </div>
+</form>

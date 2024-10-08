@@ -11,6 +11,9 @@ import { PostPropertyComponent } from './pages/user/post-property/post-property.
 import { HomeComponent } from './pages/user/home/home.component';
 import { PropertyDetailComponent } from './pages/user/property-detail/property-detail.component';
 import { SavedComponent } from './pages/user/saved/saved.component';
+import { ListingsComponent } from './pages/user/listings/listings.component';
+import { SellComponent } from './pages/user/listings/sell.component';
+import { RentComponent } from './pages/user/listings/rent.component';
 
 export const routes: Routes = [
     {
@@ -20,6 +23,18 @@ export const routes: Routes = [
             {
                 path: '',
                 component: HomeComponent,
+            },
+            {
+                path: 'listings',
+                component: ListingsComponent,
+            },
+            {
+                path: 'sell',
+                component: SellComponent,
+            },
+            {
+                path: 'rent',
+                component: RentComponent,
             },
             {
                 path: 'about',

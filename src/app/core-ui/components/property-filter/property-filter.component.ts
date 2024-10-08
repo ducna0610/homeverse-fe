@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PropertyService } from '../../../common/services/property.service';
 import { PropertyParam } from '../../../common/models/property';
 import { KeyValuePair } from '../../../common/models/keyvaluepair';
@@ -16,7 +16,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './property-filter.component.css',
 })
 export class PropertyFilterComponent {
-  @Output() filterChanged = new EventEmitter<PropertyParam>();
+  @Input() propertyParam!: PropertyParam;
 
   cityList!: any[];
   categoryTypes!: KeyValuePair[];
@@ -25,15 +25,6 @@ export class PropertyFilterComponent {
     {value: 'price', displayName: 'Giá'},
     {value: 'area', displayName: 'Diện tích'}
   ];
-
-  propertyParam: PropertyParam = {
-    address: '',
-    category: '',
-    city: '',
-    furnish: '',
-    sortBy: 'createdAt',
-    sortDirection: 'desc'
-  }
 
   constructor(
     private propertyService: PropertyService
@@ -47,10 +38,6 @@ export class PropertyFilterComponent {
     this.propertyService.getCategoryTypes().subscribe(data => {
       this.categoryTypes = data;
     });
-  }
-
-  onSearch() {
-    this.filterChanged.emit(this.propertyParam);
   }
 
 }

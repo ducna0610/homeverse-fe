@@ -46,7 +46,6 @@ export interface PropertyParam {
     address: string,
     city: string,
     category: string,
-    furnish: string,
     sortBy: string,
     sortDirection: string
 }

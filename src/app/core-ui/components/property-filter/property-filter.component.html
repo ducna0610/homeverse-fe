@@ -7,18 +7,18 @@
   <div class="flex">
     <div class="box">
       <p>Thành phố <span>*</span></p>
-      <select name="city" class="input">
+      <select [(ngModel)]="propertyParam.city" name="city" class="input">
         <option value="">Tất cả</option>
-        <option *ngFor="let city of cityList" value="{{ city.id }}">
+        <option *ngFor="let city of cityList" value="{{ city.name }}">
           {{ city.name }}
         </option>
       </select>
     </div>
     <div class="box">
       <p>Thể loại <span>*</span></p>
-      <select name="category" class="input">
+      <select  [(ngModel)]="propertyParam.category" name="category" class="input">
         <option value="">Tất cả</option>
-        <option *ngFor="let category of categoryTypes" value="{{ category.key }}">
+        <option *ngFor="let category of categoryTypes" value="{{ category.value }}">
           {{ category.value }}
         </option>
       </select>
@@ -39,5 +39,4 @@
       </select>
     </div>
   </div>
-  <button (click)="onSearch()" class="btn">Tìm kiếm</button>
 </form>

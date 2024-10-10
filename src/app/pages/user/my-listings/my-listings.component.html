@@ -1,0 +1,37 @@
+<section class="my-listings">
+    <h1 class="heading">Bài đăng của tôi</h1>
+
+    <div class="box-container">
+        @for (property of properties; track property.id) {
+        <form class="box">
+            <div class="thumb">
+                <p>
+                    <i class="far fa-image"></i><span>{{ property.numberImage }}</span>
+                </p>
+                <img src="{{ property.imageUrl }}" alt="" />
+            </div>
+            <div class="price">
+                <span>{{ property.price }}</span> vnd
+            </div>
+            <div style="font-size: 1.6rem; margin-top: 1rem;">
+                Thể loại: <span>{{ property.category }}</span>
+            </div>
+            <h3 class="name">{{ property.title }}</h3>
+            <p class="location">
+                <i class="fas fa-map-marker-alt"></i><span>{{ property.address }}</span>
+            </p>
+            <div class="flex-btn">
+                <a routerLink="/update-property/{{ property.id }}" class="btn">Cập nhật</a>
+                <a type="none" class="btn" (click)="onDelete(property.id)">Xóa</a>
+            </div>
+            <a routerLink="/property-detail/{{ property.id }}" class="btn">Xem chi tiết</a>
+        </form>
+        } @empty {
+        <p class="empty">
+            Chưa có bài đăng nào!
+            <a routerLink="/post-property" style="margin-top: 1.5rem" class="btn">Thêm mới</a>
+            >
+        </p>
+        }
+    </div>
+</section>

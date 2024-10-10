@@ -80,10 +80,10 @@
         <map-marker [position]="markerPosition"> </map-marker>
       </google-map>
       }
-      <h3 class="title">Mô tả</h3>
+      <h3 class="title" style="margin-top: 2rem;">Mô tả</h3>
       <div class="description" [innerHTML]="property.description"></div>
       <form class="flex-btn">
-        <button type="button" name="save" class="save" (click)="propertyService.setBookmark(property)">
+        <button type="button" name="save" class="save" (click)="setBookmark(property)">
           @if(propertyService.isBookmarked(property.id)) {
           <i class="fas fa-heart"></i><span>Đã lưu</span>
           } @else {

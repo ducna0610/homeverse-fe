@@ -35,8 +35,6 @@ export class PropertyCardComponent {
     if (this.isBookmarked()) {
       this.removePropertyEvent.emit(this.property.id);
       this.alertifyService.success("Đã xóa");
-      console.log(this.property.id);
-      
       this.propertyService.deleteBookmark(this.property.id).subscribe();
     } else {
       this.alertifyService.success("Đã lưu");

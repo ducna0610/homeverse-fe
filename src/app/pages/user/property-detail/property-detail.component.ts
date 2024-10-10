@@ -1,9 +1,10 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, CUSTOM_ELEMENTS_SCHEMA, ViewChild } from '@angular/core';
-import { PropertyDetailResponse } from '../../../common/models/property';
+import { PropertyDetailResponse, PropertyResponse } from '../../../common/models/property';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { PropertyService } from '../../../common/services/property.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { AlertifyService } from '../../../common/services/alertify.service';
 
 @Component({
   selector: 'app-property-detail',
@@ -36,6 +37,7 @@ export class PropertyDetailComponent {
     private route: ActivatedRoute,
     private location: Location,
     public propertyService: PropertyService,
+    public alertifyService: AlertifyService,
   ) { }
 
   ngOnInit() {
@@ -54,6 +56,16 @@ export class PropertyDetailComponent {
         });
       }
     );
+  }
+
+  setBookmark(property: PropertyResponse) {
+    if (this.propertyService.isBookmarked(property.id)) {
+      this.alertifyService.success("Đã xóa");
+      this.propertyService.deleteBookmark(this.property.id).subscribe();
+    } else {
+      this.alertifyService.success("Đã lưu");
+      this.propertyService.createBookmark(this.property).subscribe();
+    }
   }
 
   backClicked() {

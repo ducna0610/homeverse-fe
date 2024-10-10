@@ -1,17 +1,17 @@
 <section class="property-form">
-  <form [formGroup]="createPropertyForm" (ngSubmit)="onSubmit()">
-    <h3>Tạo bài đăng</h3>
+  <form [formGroup]="updatePropertyForm" (ngSubmit)="onSubmit()">
+    <h3>Cập nhật bài đăng</h3>
     <div class="box">
       <p>Tiêu đề <span>*</span></p>
       <input type="text" name="title" placeholder="nhập tiêu đề" class="input" formControlName="title"
         [class.ng-touched]="
-            isSubmitted || createPropertyForm.get('title')!.touched
+            isSubmitted || updatePropertyForm.get('title')!.touched
           " />
       <span *ngIf="
-            createPropertyForm.get('title')!.invalid &&
-            (createPropertyForm.get('title')!.touched || isSubmitted)
+            updatePropertyForm.get('title')!.invalid &&
+            (updatePropertyForm.get('title')!.touched || isSubmitted)
           " class="error">
-        <span *ngIf="createPropertyForm.get('title')!.hasError('required')">
+        <span *ngIf="updatePropertyForm.get('title')!.hasError('required')">
           Tiêu đề phải nhập
         </span>
       </span>
@@ -21,13 +21,13 @@
         <p>Giá (vnd) <span>*</span></p>
         <input type="number" name="price" placeholder="nhập giá" class="input" formControlName="price"
           [class.ng-touched]="
-              isSubmitted || createPropertyForm.get('price')!.touched
+              isSubmitted || updatePropertyForm.get('price')!.touched
             " />
         <span *ngIf="
-              createPropertyForm.get('price')!.invalid &&
-              (createPropertyForm.get('price')!.touched || isSubmitted)
+              updatePropertyForm.get('price')!.invalid &&
+              (updatePropertyForm.get('price')!.touched || isSubmitted)
             " class="error">
-          <span *ngIf="createPropertyForm.get('price')!.hasError('required')">
+          <span *ngIf="updatePropertyForm.get('price')!.hasError('required')">
             Giá phải nhập
           </span>
         </span>
@@ -36,13 +36,13 @@
         <p>Diện tích (m2) <span>*</span></p>
         <input type="number" name="area" placeholder="nhập diện tích" class="input" formControlName="area"
           [class.ng-touched]="
-              isSubmitted || createPropertyForm.get('area')!.touched
+              isSubmitted || updatePropertyForm.get('area')!.touched
             " />
         <span *ngIf="
-              createPropertyForm.get('area')!.invalid &&
-              (createPropertyForm.get('area')!.touched || isSubmitted)
+              updatePropertyForm.get('area')!.invalid &&
+              (updatePropertyForm.get('area')!.touched || isSubmitted)
             " class="error">
-          <span *ngIf="createPropertyForm.get('area')!.hasError('required')">
+          <span *ngIf="updatePropertyForm.get('area')!.hasError('required')">
             Diện tích phải nhập
           </span>
         </span>
@@ -66,16 +66,15 @@
       <div class="box">
         <p>Thành phố <span>*</span></p>
         <select name="city" class="input" formControlName="city">
-          <option value="" selected disabled hidden>Chọn thành phố</option>
           <option *ngFor="let city of cityList" value="{{ city.id }}">
             {{ city.name }}
           </option>
         </select>
         <span *ngIf="
-              createPropertyForm.get('city')!.invalid &&
-              (createPropertyForm.get('city')!.touched || isSubmitted)
-            " class="error">
-          <span *ngIf="createPropertyForm.get('city')!.hasError('required')">
+                updatePropertyForm.get('city')!.invalid &&
+                (updatePropertyForm.get('city')!.touched || isSubmitted)
+              " class="error">
+          <span *ngIf="updatePropertyForm.get('city')!.hasError('required')">
             Thành phố phải nhập
           </span>
         </span>
@@ -91,13 +90,13 @@
         <p>Địa chỉ <span>*</span></p>
         <input #inputField type="text" name="address" placeholder="nhập địa chỉ" class="input" formControlName="address"
           [class.ng-touched]="
-              isSubmitted || createPropertyForm.get('address')!.touched
+              isSubmitted || updatePropertyForm.get('address')!.touched
             " />
         <span *ngIf="
-              createPropertyForm.get('address')!.invalid &&
-              (createPropertyForm.get('address')!.touched || isSubmitted)
+              updatePropertyForm.get('address')!.invalid &&
+              (updatePropertyForm.get('address')!.touched || isSubmitted)
             " class="error">
-          <span *ngIf="createPropertyForm.get('address')!.hasError('required')">
+          <span *ngIf="updatePropertyForm.get('address')!.hasError('required')">
             Địa chỉ phải nhập
           </span>
         </span>
@@ -111,13 +110,13 @@
     <div class="box">
       <p>Mô tả <span>*</span></p>
       <ckeditor [editor]="editor" [config]="config" formControlName="description" [class.ng-touched]="
-            isSubmitted || createPropertyForm.get('description')!.touched
+            isSubmitted || updatePropertyForm.get('description')!.touched
           " style="display: block; margin: 1rem 0"></ckeditor>
       <span *ngIf="
-            createPropertyForm.get('description')!.invalid &&
-            (createPropertyForm.get('description')!.touched || isSubmitted)
+            updatePropertyForm.get('description')!.invalid &&
+            (updatePropertyForm.get('description')!.touched || isSubmitted)
           " class="error">
-        <span *ngIf="createPropertyForm.get('description')!.hasError('required')">
+        <span *ngIf="updatePropertyForm.get('description')!.hasError('required')">
           Mô tả phải nhập
         </span>
       </span>
@@ -136,6 +135,6 @@
         </ngx-dropzone-image-preview>
       </ngx-dropzone>
     </div>
-    <input type="submit" value="Hoàn thành" class="btn" style="margin-top: 2.4rem" name="post" />
+    <input type="submit" value="Cập nhật" class="btn" style="margin-top: 2.4rem" name="post" />
   </form>
 </section>

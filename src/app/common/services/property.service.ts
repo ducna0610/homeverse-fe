@@ -45,8 +45,8 @@ export class PropertyService {
     return this.http.post<PropertyResponse>(this.apiUrl + '/v1/properties', dataHelper.objectToFormData(property));
   }
 
-  updateProperty(id: number, property: PropertyRequest) {
-    return this.http.put(this.apiUrl + '/v1/properties/' + id, dataHelper.objectToFormData(property));
+  updateProperty(id: number, property: PropertyRequest): Observable<PropertyResponse> {
+    return this.http.put<PropertyResponse>(this.apiUrl + '/v1/properties/' + id, dataHelper.objectToFormData(property));
   }
 
   deleteProperty(id: number) {
@@ -101,11 +101,4 @@ export class PropertyService {
     return this.http.delete<any>(this.apiUrl + '/v1/properties/delete-bookmark/' + id);
   }
 
-  setBookmark(property: PropertyResponse) {
-    if (this.isBookmarked(property.id)) {
-      this.deleteBookmark(property.id).subscribe()
-    } else {
-      this.createBookmark(property).subscribe()
-    }
-  }
 }

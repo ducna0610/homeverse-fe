@@ -51,7 +51,7 @@
       @if (userService.currentUser(); as user) {
       <ul>
         <li>
-          <a>Tin nhắn</a>
+          <a routerLink="/message">Tin nhắn [{{ totalMessageUnread }}] </a>
         </li>
         <li>
           <a routerLink="/saved">Đã lưu [{{ totalBookmarked }}]<i class="far fa-heart"></i></a>

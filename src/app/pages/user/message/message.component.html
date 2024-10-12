@@ -1,0 +1,75 @@
+<section>
+    <div class="layout">
+      <div class="chat-user">
+        <div class="search-user">
+          <input
+            name="searchName"
+            [(ngModel)]="searchName"
+            class="search-user-input"
+            type="text"
+            placeholder="Nhập tên cần tìm"
+          />
+        </div>
+        <div class="list-chat-user">
+          @for(friend of presenceService.friends$ | async |
+          filter:searchName:'name'; track friend.id){
+          <a
+            class="btn-chat-user"
+            [ngClass]="friend.isOnline ? 'user-online' : 'user-offline'"
+            routerLink="/message/{{ friend.id }}"
+            >{{ friend.name }} [{{ friend.messageUnread }}]</a
+          >}
+        </div>
+      </div>
+      @if (receiver){
+      <div class="message-layout">
+        <div class="info-chat-user">
+          <p>Tên: {{ receiver.name }}</p>
+          <p>Email: {{ receiver.email }}</p>
+        </div>
+        <div #scrollMe class="message-thread">
+          @for (message of messageService.messageThread$ | async; track
+          message.id) {
+          <p
+            class="message"
+            [ngClass]="
+              message.receiver.id == receiver.id ? 'current-user' : 'other-user'
+            "
+            [ngStyle]="{ opacity: message.isReaded ? 1 : 0.6 }"
+          >
+            <span class="message-content">{{ message.content }}</span>
+            <span class="message-time">{{ message.createdAt | timeago }}</span>
+          </p>
+          }
+        </div>
+        <form class="chat-form">
+          <div class="chat-input">
+            <textarea
+              (keyup.enter)="onSubmit()"
+              [(ngModel)]="content"
+              name="description"
+              maxlength="1000"
+              class="input"
+              rows="3"
+              placeholder="Soạn tin nhắn..."
+              contenteditable
+            ></textarea>
+          </div>
+          <div>
+            <button class="btn btn-dark btn-block" (click)="onSubmit()">
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+      } @else {
+      <div class="message-layout">
+        <div class="info-chat-user">
+          <p>Tính năng nhắn tin trực tuyến giúp kết nối mọi người 1 cách dễ dàng.</p>
+        </div>
+        <div class="message-thread"></div>
+      </div>
+      }
+    </div>
+  </section>
+  

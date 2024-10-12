@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AlertifyService } from '../../../common/services/alertify.service';
 import { UserService } from '../../../common/services/user.service';
 import { PropertyService } from '../../../common/services/property.service';
+import { PresenceService } from '../../../common/services/presence.service';
 
 @Component({
   selector: 'app-user-header',
@@ -24,6 +25,7 @@ export class UserHeaderComponent {
     @Inject(DOCUMENT) private document: Document,
     private alertifyService: AlertifyService,
     public userService: UserService,
+    public presenceService: PresenceService,
     private propertyService: PropertyService,
   ) { }
 
@@ -50,6 +52,10 @@ export class UserHeaderComponent {
     `;
 
     this.renderer2.appendChild(this.document.body, script);
+
+    this.presenceService.friends$.subscribe(
+      data => this.totalMessageUnread = data.reduce((sum, curr) => sum + curr.messageUnread, 0)
+    )
 
     this.propertyService.bookmarks$.subscribe(
       data => this.totalBookmarked = data.length

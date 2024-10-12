@@ -6,6 +6,7 @@ import { map, Observable } from 'rxjs';
 import { jwtDecode } from "jwt-decode";
 import dataHelper from '../helpers/data.helper';
 import { PropertyService } from './property.service';
+import { PresenceService } from './presence.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class UserService {
   constructor(
     private httpClient: HttpClient, 
     private propetyService: PropertyService,
+    private presenceService: PresenceService,
   ) { }
 
   register(request: RegisterRequest) {
@@ -34,6 +36,10 @@ export class UserService {
     );
   }
 
+  getUser(id: number): Observable<UserResponse> {
+    return this.httpClient.get<UserResponse>(this.apiUrl + '/v1/users/' + id);
+  }
+
   getProfile(): Observable<UserResponse> {
     return this.httpClient.get<UserResponse>(this.apiUrl + '/v1/users/profile');
   }
@@ -42,6 +48,7 @@ export class UserService {
     return this.httpClient.put<UserResponse>(this.apiUrl + '/v1/users/profile', request).pipe(
       map((response: UserResponse) => {
         this.setCurrentUser();
+        this.presenceService.updateToFriends();
         return response;
       })
     )
@@ -50,13 +57,13 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
     this.currentUser.set(null);
+    this.presenceService.stopHubConnection();
     this.propetyService.clearBookmarks();
   }
 
   forgotPassword(email: string) {
     return this.httpClient.post(this.apiUrl + '/v1/users/forgot-password', dataHelper.objectToFormData({ email }));
   }
-
 
   getToken() {
     return localStorage.getItem('token') ?? '';
@@ -81,6 +88,7 @@ export class UserService {
     this.getProfile().subscribe(
       response => {
         this.currentUser.set(response);
+        this.presenceService.createHubConnection(this.getToken());
         this.propetyService.setBookmarks();
       }
     );

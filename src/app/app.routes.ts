@@ -16,6 +16,7 @@ import { SellComponent } from './pages/user/listings/sell.component';
 import { RentComponent } from './pages/user/listings/rent.component';
 import { UpdatePropertyComponent } from './pages/user/update-property/update-property.component';
 import { MyListingsComponent } from './pages/user/my-listings/my-listings.component';
+import { MessageComponent } from './pages/user/message/message.component';
 
 export const routes: Routes = [
     {
@@ -88,6 +89,14 @@ export const routes: Routes = [
             {
                 path: 'saved',
                 component: SavedComponent,
+            },
+            {
+                path: 'message',
+                component: MessageComponent
+            },
+            {
+                path: 'message/:id',
+                component: MessageComponent,
             },
         ],
     },

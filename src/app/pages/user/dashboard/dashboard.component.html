@@ -1,0 +1,49 @@
+<section class="dashboard">
+  <h1 class="heading">dashboard</h1>
+
+  <div class="box-container">
+    <div class="box">
+      <h3>welcome!</h3>
+      @if (userService.currentUser(); as user) {
+      <p>{{ user.name }}</p>
+      }
+      <a routerLink="/profile" class="btn">Tài khoản</a>
+    </div>
+
+    <div class="box">
+      <h3>Bài đăng</h3>
+      <p>search your dream property</p>
+      <a routerLink="/listings" class="btn">Tìm kiếm</a>
+    </div>
+
+    <div class="box">
+      <h3>{{ numOfProperty }}</h3>
+      <p>Đã đăng</p>
+      <a routerLink="/my-listings" routerLinkActive="router-link-active" class="btn">Xem tất cả</a>
+    </div>
+
+    <div class="box">
+      <h3>{{ totalMessageUnread }}</h3>
+      <p>Tin nhắn mới</p>
+      <a routerLink="/message" class="btn">Nhắn tin</a>
+    </div>
+
+    <div class="box">
+      <h3>{{ totalBookmarked }}</h3>
+      <p>Đã lưu</p>
+      <a routerLink="/saved" class="btn">Xem tất cả</a>
+    </div>
+
+    <div class="box">
+      <h3>{{ numOfProperty }}</h3>
+      <p>Đã đăng</p>
+      <a routerLink="/post-property" class="btn">Tạo bài đăng</a>
+    </div>
+  </div>
+
+  <div class="chart">
+    <canvas class="chart-item" id="post">{{ chart }}</canvas>
+    <canvas class="chart-item" id="city">{{ chart }}</canvas>
+    <canvas class="chart-item" id="status">{{ chart }}</canvas>
+  </div>
+</section>

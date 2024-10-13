@@ -17,6 +17,7 @@ import { RentComponent } from './pages/user/listings/rent.component';
 import { UpdatePropertyComponent } from './pages/user/update-property/update-property.component';
 import { MyListingsComponent } from './pages/user/my-listings/my-listings.component';
 import { MessageComponent } from './pages/user/message/message.component';
+import { DashboardComponent } from './pages/user/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -69,6 +70,10 @@ export const routes: Routes = [
             {
                 path: 'profile',
                 component: ProfileComponent,
+            },
+            {
+                path: 'dashboard',
+                component: DashboardComponent,
             },
             {
                 path: 'my-listings',

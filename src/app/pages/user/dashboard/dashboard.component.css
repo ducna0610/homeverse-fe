@@ -1,0 +1,12 @@
+.chart {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.chart-item {
+    margin-top: 20px;
+    max-width: 600px;
+    max-height: 600px;
+}

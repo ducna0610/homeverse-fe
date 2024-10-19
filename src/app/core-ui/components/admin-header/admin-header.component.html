@@ -4,15 +4,15 @@
   <a routerLink="/" class="logo">Homverse</a>
 
   <nav class="navbar">
-    <a routerLink='/admin/dashboard' routerLinkActive="active" ><i class="fas fa-dashboard"></i><span>Dashboard</span></a>
-    <a routerLink='/admin/statistics' routerLinkActive="active" ><i class="fas fa-chart-line"></i><span>Thống kê</span></a>
-    <a><i class="fas fa-building"></i><span>Bài đăng</span></a>
+    <a routerLink='/admin/dashboard' routerLinkActive="active"><i class="fas fa-dashboard"></i><span>Dashboard</span></a>
+    <a routerLink='/admin/statistics' routerLinkActive="active"><i class="fas fa-chart-line"></i><span>Thống kê</span></a>
+    <a routerLink='/admin/listings' routerLinkActive="active"><i class="fas fa-building"></i><span>Bài đăng</span></a>
     <a><i class="fas fa-user"></i><span>Người dùng</span></a>
     <a routerLink="/admin/contacts"><i class="fas fa-message"></i><span>Liên hệ</span></a>
   </nav>
 
   <a routerLink="/profile" class="btn">Cập nhật tài khoản</a>
-  <a href="#" (click)="onLogout()" class="delete-btn"><i class="fas fa-right-from-bracket"></i><span>Đăng
+  <a (click)="onLogout()" class="delete-btn"><i class="fas fa-right-from-bracket"></i><span>Đăng
       xuất</span></a>
 </header>
 

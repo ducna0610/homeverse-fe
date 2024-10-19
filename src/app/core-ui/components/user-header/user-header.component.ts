@@ -63,10 +63,9 @@ export class UserHeaderComponent {
   }
 
   onLogout() {
-    if (!confirm('Bạn có muốn đăng xuất?')) {
-      return;
+    if (confirm('Bạn có muốn đăng xuất?')) {
+      this.userService.logout();
+      this.alertifyService.success("Đăng xuất thành công");
     }
-    this.userService.logout();
-    this.alertifyService.success("Đăng xuất thành công");
   }
 }

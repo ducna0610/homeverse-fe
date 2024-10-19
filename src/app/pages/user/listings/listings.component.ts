@@ -23,6 +23,7 @@ import { PropertyFilterComponent } from '../../../core-ui/components/property-fi
   styleUrl: './listings.component.css',
 })
 export class ListingsComponent {
+
   properties = new Array<PropertyResponse>();
   bookmarks = new Array<number>();
 
@@ -35,7 +36,7 @@ export class ListingsComponent {
   }
 
   constructor(
-    private propertyService: PropertyService
+    private propertyService: PropertyService,
   ) { }
 
   ngOnInit() {

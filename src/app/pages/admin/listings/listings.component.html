@@ -1,0 +1,30 @@
+<section class="listings">
+
+   <h1 class="heading">Tất cả bài đăng</h1>
+
+   <form class="search-form">
+      <input [(ngModel)]="search" type="text" name="search_box" placeholder="Nhập địa chỉ..." maxlength="100">
+   </form>
+
+   <div class="box-container">
+      @for (property of (properties | filter:search:'address'); track property.id) {
+      <div class="box">
+         <div class="thumb">
+            <p><i class="far fa-image"></i><span>{{ property.numberImage }}</span></p>
+            <img src="{{ property.imageUrl }}" alt="" />
+         </div>
+         <p class="price">{{ property.price }} vnd</p>
+         <h3 class="name">{{ property.title }}</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i>{{ property.address }}</p>
+         <a routerLink="/property-detail/{{ property.id }}"  class="btn">Xem chi tiết</a>
+         <button (click)="onDelete(property.id)" class="delete-btn">Xóa</button>
+      </div>
+      } @empty {
+      <p class="empty">
+         Chưa có bài đăng nào!
+         <a routerLink="/post-property" class="btn">Thêm mới</a>
+      </p>
+      }
+   </div>
+
+</section>

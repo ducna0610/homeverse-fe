@@ -1,33 +1,40 @@
 export interface RegisterRequest {
-    userName: string;
-    email: string;
-    phone: string;
-    password: string;
+    userName: string,
+    email: string,
+    phone: string,
+    password: string,
 }
+
 export interface LoginRequest {
-    email: string;
-    password: string;
+    email: string,
+    password: string,
 }
+
 export interface UpdateUserRequest {
-    userName: string;
-    email: string;
-    phone: string;
-    password: string;
-    newPassword: string;
+    userName: string,
+    email: string,
+    phone: string,
+    password: string,
+    newPassword: string,
 }
+
 export interface TokenResponse {
-    token: string;
+    token: string,
 }
+
 export interface UserResponse {
-    id: number;
-    name: string;
-    email: string;
-    phone: string;
-    role: number;
-    isActive: boolean;
-    isDeleted: boolean;
+    id: number,
+    name: string,
+    email: string,
+    phone: string,
+    role: number,
+    isActive: boolean,
+    isDeleted: boolean,
+    createdAt: Date,
+    updatedAt: Date,
 }
+
 export interface FriendResponse extends UserResponse {
-    isOnline: boolean;
-    messageUnread: number;
+    isOnline: boolean,
+    messageUnread: number,
 }

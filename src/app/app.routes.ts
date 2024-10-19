@@ -21,6 +21,7 @@ import { DashboardComponent } from './pages/user/dashboard/dashboard.component';
 import { AdminComponent } from './layouts/admin/admin.component';
 import { adminGuard } from './common/guards/admin.guard';
 import { DashboardComponent as AdminDashboardComponent } from './pages/admin/dashboard/dashboard.component';
+import { StatisticsComponent as AdminStatisticsComponent } from './pages/admin/statistics/statistics.component';
 
 export const routes: Routes = [
     {
@@ -116,6 +117,10 @@ export const routes: Routes = [
             {
                 path: 'dashboard',
                 component: AdminDashboardComponent
+            },
+            {
+                path: 'statistics',
+                component: AdminStatisticsComponent
             },
         ],
     },

@@ -1,54 +1,123 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { UserService } from '../../../common/services/user.service';
 import { PropertyService } from '../../../common/services/property.service';
-import { concatMap, count, groupBy, mergeMap, of, zip } from 'rxjs';
 import Chart from 'chart.js/auto';
-import { PresenceService } from '../../../common/services/presence.service';
+import { concatMap, count, groupBy, mergeMap, of, zip } from 'rxjs';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-statistics',
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule
   ],
   providers: [
     DatePipe
   ],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+  templateUrl: './statistics.component.html',
+  styleUrl: './statistics.component.css',
 })
-export class DashboardComponent {
+export class StatisticsComponent {
 
-  totalBookmarked = 0;
-  totalProperty = 0;
-  totalMessageUnread = 0;
   public chart: any;
   postLabel = Array<string>();
   postData = Array<number>();
   cityLabel = Array<string>();
   cityData = Array<number>();
-  statusLabel = Array<string>();
-  statusData = Array<number>();
+  statusPostLabel = Array<string>();
+  statusPostData = Array<number>();
+  userLabel = Array<string>();
+  userData = Array<number>();
+  statusUserLabel = Array<string>();
+  statusUserData = Array<number>();
 
   constructor(
     private datePipe: DatePipe,
     public userService: UserService,
     private propertyService: PropertyService,
-    private presenceService: PresenceService,
   ) { }
 
   ngOnInit() {
-    this.presenceService.friends$.subscribe(
-      data => this.totalMessageUnread = data.reduce((sum, curr) => sum + curr.messageUnread, 0)
-    )
 
-    this.propertyService.getPropertiesForUser().subscribe(
+    
+    this.userService.getUsers().subscribe(
       data => {
-        this.totalProperty = data.length;
         
+        var today = new Date();
+        var startDay = new Date(new Date().setDate(today.getDate() - 30));
+
+        for (var d = startDay; d <= today; d.setDate(d.getDate() + 1)) {
+          this.userLabel.push(d.getDate() + '/' + (d.getMonth() + 1));
+          var properties = data.filter(x => this.datePipe.transform(new Date(x.createdAt), 'yyyy-MM-dd') === this.datePipe.transform(d, 'yyyy-MM-dd'));
+          this.userData.push(properties.length);
+        }
+        this.chart = new Chart('new-user', {
+          type: 'line',
+          data: {
+            labels: this.userLabel,
+            datasets: [
+              {
+                label: 'User',
+                data: this.userData,
+              }
+            ],
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'User mới trong 30 ngày gần đây'
+              }
+            },
+          },
+        });
+        
+        of(data).pipe(
+          concatMap(res => res),
+          groupBy(item => item.isActive ? 'Đã kích hoạt' : 'Chưa kích hoạt'),
+          mergeMap(group =>
+            zip(
+              of(group.key), group.pipe(count())
+            )
+          ))
+          .subscribe((grouped: any) => {
+            this.statusUserLabel.push(grouped[0]);
+            this.statusUserData.push(grouped[1]);
+          });
+        this.chart = new Chart('status-user', {
+          type: 'pie',
+          data: {
+            labels: this.statusUserLabel,
+            datasets: [
+              {
+                label: 'User',
+                data: this.statusUserData,
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: true,
+                text: 'User theo trạng thái'
+              }
+            }
+          },
+        });
+      }
+    );
+
+    this.propertyService.getAllProperties().subscribe(
+      data => {
+
         var today = new Date();
         var startDay = new Date(new Date().setDate(today.getDate() - 30));
 
@@ -56,7 +125,6 @@ export class DashboardComponent {
           this.postLabel.push(d.getDate() + '/' + (d.getMonth() + 1));
           var properties = data.filter(x => this.datePipe.transform(new Date(x.createdAt), 'yyyy-MM-dd') === this.datePipe.transform(d, 'yyyy-MM-dd'));
           this.postData.push(properties.length);
-          // this.postData.push(Math.floor(Math.random() * 100) + 1);
         }
         this.chart = new Chart('post', {
           type: 'line',
@@ -129,17 +197,17 @@ export class DashboardComponent {
             )
           ))
           .subscribe((grouped: any) => {
-            this.statusLabel.push(grouped[0]);
-            this.statusData.push(grouped[1]);
+            this.statusPostLabel.push(grouped[0]);
+            this.statusPostData.push(grouped[1]);
           });
-        this.chart = new Chart('status', {
+        this.chart = new Chart('status-post', {
           type: 'pie',
           data: {
-            labels: this.statusLabel,
+            labels: this.statusPostLabel,
             datasets: [
               {
                 label: 'Bài đăng',
-                data: this.statusData,
+                data: this.statusPostData,
               }
             ]
           },
@@ -157,10 +225,6 @@ export class DashboardComponent {
           },
         });
       }
-    )
-
-    this.propertyService.bookmarks$.subscribe(
-      data => this.totalBookmarked = data.length
-    )
+    );
   }
 }

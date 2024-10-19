@@ -2,7 +2,7 @@ import { UserResponse } from "./user";
 
 export interface MessageRequest {
     content: string,
-    receiverId: number
+    receiverId: number,
 }
 
 export interface MessageResponse {
@@ -11,5 +11,5 @@ export interface MessageResponse {
     sender: UserResponse,
     receiver: UserResponse,
     isReaded: boolean,
-    createdAt: Date;
+    createdAt: Date,
 }

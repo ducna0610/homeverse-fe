@@ -59,6 +59,11 @@
         <li>
           <a href="#" (click)="(false)">{{ user.name }} <i class="fas fa-angle-down"></i></a>
           <ul>
+            @if (userService.isAdmin()) {
+            <li>
+              <a routerLink="/admin/dashboard">Admin</a>
+            </li>
+            }
             <li>
               <a routerLink="/dashboard">Thống kê</a>
             </li>

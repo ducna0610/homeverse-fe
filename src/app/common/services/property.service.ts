@@ -37,6 +37,10 @@ export class PropertyService {
     return this.http.get<PropertyResponse[]>(this.apiUrl + '/v1/properties/list');
   }
 
+  getAllProperties(): Observable<PropertyDetailResponse[]> {
+    return this.http.get<PropertyDetailResponse[]>(this.apiUrl + '/v1/properties');
+  }
+
   getPropertiesForUser(): Observable<PropertyDetailResponse[]> {
     return this.http.get<PropertyDetailResponse[]>(this.apiUrl + '/v1/properties/user');
   }

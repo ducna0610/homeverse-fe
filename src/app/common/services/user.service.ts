@@ -36,6 +36,10 @@ export class UserService {
     );
   }
 
+  getUsers(): Observable<UserResponse[]> {
+    return this.httpClient.get<UserResponse[]>(this.apiUrl + '/v1/users/');
+  }
+
   getUser(id: number): Observable<UserResponse> {
     return this.httpClient.get<UserResponse>(this.apiUrl + '/v1/users/' + id);
   }
@@ -92,5 +96,14 @@ export class UserService {
         this.propetyService.setBookmarks();
       }
     );
+  }
+
+  isAdmin() {
+    let decodeToken = this.getDecodeToken();
+    if (!decodeToken) {
+      return false;
+    }
+
+    return decodeToken.role === "Admin";
   }
 }

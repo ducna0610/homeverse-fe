@@ -4,7 +4,8 @@ export interface ContactResponse {
     email: string,
     phone: string,
     message: string,
-    createdAt: string
+    createdAt: Date,
+    updatedAt: Date,
 }
 
 export interface ContactRequest {

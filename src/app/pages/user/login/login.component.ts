@@ -48,7 +48,11 @@ export class LoginComponent {
         (response: any) => {
           if (response) {
             this.alertifyService.success('Đăng nhập thành công');
-            this.router.navigate(['/']);
+            if (this.userService.isAdmin()) {
+              this.router.navigate(['/admin/dashboard']);
+            } else {
+              this.router.navigate(['/']);
+            }
           }
         }
       );

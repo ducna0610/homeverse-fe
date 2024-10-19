@@ -183,6 +183,11 @@ a:hover {
   color: var(--white);
 }
 
+.header .navbar .active {
+  background-color: var(--black);
+  color: var(--white);
+}
+
 .header .navbar a i {
   margin-right: 1.2rem;
 }

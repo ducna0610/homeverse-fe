@@ -18,6 +18,9 @@ import { UpdatePropertyComponent } from './pages/user/update-property/update-pro
 import { MyListingsComponent } from './pages/user/my-listings/my-listings.component';
 import { MessageComponent } from './pages/user/message/message.component';
 import { DashboardComponent } from './pages/user/dashboard/dashboard.component';
+import { AdminComponent } from './layouts/admin/admin.component';
+import { adminGuard } from './common/guards/admin.guard';
+import { DashboardComponent as AdminDashboardComponent } from './pages/admin/dashboard/dashboard.component';
 
 export const routes: Routes = [
     {
@@ -102,6 +105,17 @@ export const routes: Routes = [
             {
                 path: 'message/:id',
                 component: MessageComponent,
+            },
+        ],
+    },
+    {
+        path: 'admin',
+        component: AdminComponent,
+        canActivate: [adminGuard],
+        children: [
+            {
+                path: 'dashboard',
+                component: AdminDashboardComponent
             },
         ],
     },

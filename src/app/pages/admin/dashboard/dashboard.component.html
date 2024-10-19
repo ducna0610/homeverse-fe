@@ -1,0 +1,32 @@
+<section class="dashboard">
+    <h1 class="heading">dashboard</h1>
+  
+    <div class="box-container">
+      <div class="box">
+        <h3>welcome!</h3>
+        @if (userService.currentUser(); as user) {
+        <p>{{ user.name }}</p>
+        }
+        <a routerLink="/profile" class="btn">Cập nhật tài khoản</a>
+      </div>
+  
+      <div class="box">
+        <h3>{{ totalProperty }}</h3>
+        <p>bài đăng</p>
+        <a routerLink="/admin/properties" class="btn">Xem bài đăng</a>
+      </div>
+  
+      <div class="box">
+        <h3>{{ totalUser }}</h3>
+        <p>người dùng</p>
+        <a routerLink="/admin/users" class="btn">xem người dùng</a>
+      </div>
+  
+      <div class="box">
+        <h3>{{ totalContact }}</h3>
+        <p>liên hệ mới</p>
+        <a routerLink="/admin/contacts" class="btn">Xem liên hệ</a>
+      </div>
+    </div>
+  </section>
+  

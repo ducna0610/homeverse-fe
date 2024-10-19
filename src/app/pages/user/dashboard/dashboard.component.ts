@@ -21,8 +21,9 @@ import { PresenceService } from '../../../common/services/presence.service';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
+
   totalBookmarked = 0;
-  numOfProperty = 0;
+  totalProperty = 0;
   totalMessageUnread = 0;
   public chart: any;
   postLabel = Array<string>();
@@ -40,14 +41,13 @@ export class DashboardComponent {
   ) { }
 
   ngOnInit() {
-
     this.presenceService.friends$.subscribe(
       data => this.totalMessageUnread = data.reduce((sum, curr) => sum + curr.messageUnread, 0)
     )
 
     this.propertyService.getPropertiesForUser().subscribe(
       data => {
-        this.numOfProperty = data.length;
+        this.totalProperty = data.length;
         
         var today = new Date();
         var startDay = new Date(new Date().setDate(today.getDate() - 30));

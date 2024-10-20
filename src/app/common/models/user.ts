@@ -28,6 +28,7 @@ export interface UserResponse {
     email: string,
     phone: string,
     role: number,
+    numberPost: number,
     isActive: boolean,
     isDeleted: boolean,
     createdAt: Date,

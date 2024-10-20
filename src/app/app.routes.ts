@@ -24,6 +24,7 @@ import { DashboardComponent as AdminDashboardComponent } from './pages/admin/das
 import { StatisticsComponent as AdminStatisticsComponent } from './pages/admin/statistics/statistics.component';
 import { ListingsComponent as AdminListingsComponent } from './pages/admin/listings/listings.component';
 import { UsersComponent as AdminUsersComponent } from './pages/admin/users/users.component';
+import { ContactsComponent as AdminContactsComponent } from './pages/admin/contacts/contacts.component';
 
 export const routes: Routes = [
     {
@@ -131,6 +132,10 @@ export const routes: Routes = [
             {
                 path: 'users',
                 component: AdminUsersComponent,
+            },
+            {
+                path: 'contacts',
+                component: AdminContactsComponent,
             },
         ],
     },

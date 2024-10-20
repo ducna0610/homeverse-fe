@@ -1,0 +1,26 @@
+<section class="grid">
+
+    <h1 class="heading">Contacts</h1>
+
+    <form class="search-form">
+        <input [(ngModel)]="search" type="text" name="search_box" placeholder="Nhập nội dung..." maxlength="100">
+    </form>
+
+    <div class="box-container">
+
+        @for (contact of (contacts | filter:search:'message'); track contact.id) {
+            <div class="box">
+                <p>Tên : <span>{{ contact.name }}</span></p>
+                <p>Số điện thoại : <a href="tel:{{ contact.phone }}">{{ contact.phone }}</a></p>
+                <p>Email : <a href="mailto:{{ contact.email}}">{{ contact.email }}</a></p>
+                <p>Tin nhắn : <span>{{ contact.message }}</span></p>
+                <button (click)="onDelete(contact.id)" class="delete-btn">Xóa</button>
+            </div>
+            } @empty {
+            <p class="empty">
+                Không có contact!
+            </p>
+            }
+    </div>
+
+</section>

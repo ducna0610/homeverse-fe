@@ -38,7 +38,6 @@ export class StatisticsComponent {
   ) { }
 
   ngOnInit() {
-
     
     this.userService.getUsers().subscribe(
       data => {

@@ -37,7 +37,7 @@ export class UserService {
   }
 
   getUsers(): Observable<UserResponse[]> {
-    return this.httpClient.get<UserResponse[]>(this.apiUrl + '/v1/users/');
+    return this.httpClient.get<UserResponse[]>(this.apiUrl + '/v1/users');
   }
 
   getUser(id: number): Observable<UserResponse> {
@@ -56,6 +56,10 @@ export class UserService {
         return response;
       })
     )
+  }
+
+  deleteUser(id: number) {
+    return this.httpClient.delete(this.apiUrl + '/v1/users/' + id);
   }
 
   logout() {

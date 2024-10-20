@@ -23,6 +23,7 @@ import { adminGuard } from './common/guards/admin.guard';
 import { DashboardComponent as AdminDashboardComponent } from './pages/admin/dashboard/dashboard.component';
 import { StatisticsComponent as AdminStatisticsComponent } from './pages/admin/statistics/statistics.component';
 import { ListingsComponent as AdminListingsComponent } from './pages/admin/listings/listings.component';
+import { UsersComponent as AdminUsersComponent } from './pages/admin/users/users.component';
 
 export const routes: Routes = [
     {
@@ -126,6 +127,10 @@ export const routes: Routes = [
             {
                 path: 'listings',
                 component: AdminListingsComponent
+            },
+            {
+                path: 'users',
+                component: AdminUsersComponent,
             },
         ],
     },

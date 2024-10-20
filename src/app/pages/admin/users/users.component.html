@@ -1,0 +1,26 @@
+<section class="grid">
+
+    <h1 class="heading">users</h1>
+
+    <form class="search-form">
+        <input [(ngModel)]="search" type="text" name="search_box" placeholder="Nhập email..." maxlength="100">
+    </form>
+
+    <div class="box-container">
+
+        @for (user of (users | filter:search:'email'); track user.id) {
+        <div class="box">
+            <p>Tên : <span>{{ user.name }}</span></p>
+            <p>Số điện thoại : <a href="tel:{{ user.phone }}">{{ user.phone }}</a></p>
+            <p>Email : <a href="mailto:{{ user.email}}">{{ user.email }}</a></p>
+            <p>Số bài đăng : <span>{{ user.numberPost }}</span></p>
+            <button (click)="onDelete(user.id)" class="delete-btn">Xóa</button>
+        </div>
+        } @empty {
+        <p class="empty">
+            Không có user!
+        </p>
+        }
+    </div>
+
+</section>

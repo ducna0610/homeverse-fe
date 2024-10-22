@@ -2,12 +2,14 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from './common/services/user.service';
 import { PropertyService } from './common/services/property.service';
+import { NgxSpinnerComponent } from 'ngx-spinner';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
+    NgxSpinnerComponent,
 ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

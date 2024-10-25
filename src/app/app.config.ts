@@ -6,6 +6,7 @@ import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@a
 import { ErrorInterceptor } from './common/interceptors/error.interceptor';
 import { TokenInterceptor } from './common/interceptors/token.interceptor';
 import { LoadingInterceptor } from './common/interceptors/loading.interceptor';
+import { provideAnimations } from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,5 +29,6 @@ export const appConfig: ApplicationConfig = {
       useClass: LoadingInterceptor,
       multi: true
     },
+    provideAnimations(),
   ]
 };

@@ -11,7 +11,11 @@
       <p class="total-images">
         <i class="far fa-image"></i><span>{{ property.numberImage }}</span>
       </p>
-      <img src="{{ property.imageUrl }}" alt="" />
+      @if (property.imageUrl) {
+        <img src="{{ property.imageUrl }}" alt="" />
+      } @else {
+        <img src="images/default.jpg" alt="" />
+      }
     </div>
     <div class="admin">
       <h3><i class="fa-solid fa-user"></i></h3>

@@ -11,7 +11,11 @@
       <div class="box">
          <div class="thumb">
             <p><i class="far fa-image"></i><span>{{ property.numberImage }}</span></p>
-            <img src="{{ property.imageUrl }}" alt="" />
+            @if (property.imageUrl) {
+              <img src="{{ property.imageUrl }}" alt="" />
+            } @else {
+              <img src="images/default.jpg" alt="" />
+            }
          </div>
          <p class="price">{{ property.price }} vnd</p>
          <h3 class="name">{{ property.title }}</h3>

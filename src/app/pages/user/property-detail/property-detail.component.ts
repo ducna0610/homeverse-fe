@@ -60,11 +60,15 @@ export class PropertyDetailComponent {
 
   setBookmark(property: PropertyResponse) {
     if (this.propertyService.isBookmarked(property.id)) {
-      this.alertifyService.success("Đã xóa");
-      this.propertyService.deleteBookmark(this.property.id).subscribe();
+      this.propertyService.deleteBookmark(this.property.id).subscribe(
+        _ =>
+          this.alertifyService.success("Đã xóa")
+      );
     } else {
-      this.alertifyService.success("Đã lưu");
-      this.propertyService.createBookmark(this.property).subscribe();
+      this.propertyService.createBookmark(this.property).subscribe(
+        _ => 
+          this.alertifyService.success("Đã lưu")
+      );
     }
   }
 

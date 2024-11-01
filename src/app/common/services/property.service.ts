@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, map, Observable, take, tap } from 'rxjs';
 import { PropertyDetailResponse, PropertyRequest, PropertyResponse } from '../models/property';
 import { HttpClient } from '@angular/common/http';
 import { KeyValuePair } from '../models/keyvaluepair';
@@ -68,7 +68,7 @@ export class PropertyService {
   }
 
   setBookmarks() {
-    this.getBookmarks().subscribe( bookmarks =>
+    this.getBookmarks().subscribe(bookmarks =>
       this.bookmarksSource.next(bookmarks)
     )
   }
@@ -87,22 +87,29 @@ export class PropertyService {
     return isBookmarked;
   }
 
-  createBookmark(property: PropertyResponse): Observable<any> {
-    this.bookmarks$.pipe(take(1)).subscribe({
-      next: bookmarks => {
-        this.bookmarksSource.next([...bookmarks, property]);
-      }
-    })
-    return this.http.post<any>(this.apiUrl + '/v1/properties/add-bookmark/' + property.id, {});
+  createBookmark(property: PropertyResponse): Observable<PropertyResponse[]> {
+    return this.http.post<PropertyResponse[]>(this.apiUrl + '/v1/properties/add-bookmark/' + property.id, {}).pipe(
+      map((response: PropertyResponse[]) => {
+        this.bookmarks$.pipe(take(1)).subscribe({
+          next: bookmarks => {
+            this.bookmarksSource.next([...bookmarks, property]);
+          }
+        })
+        return response;
+      })
+    );
   }
 
   deleteBookmark(id: number): Observable<any> {
-    this.bookmarks$.pipe(take(1)).subscribe({
-      next: bookmarks => {
-        this.bookmarksSource.next([...bookmarks.filter(x => x.id !== id)]);
-      }
-    })
-    return this.http.delete<any>(this.apiUrl + '/v1/properties/delete-bookmark/' + id);
+    return this.http.delete<any>(this.apiUrl + '/v1/properties/delete-bookmark/' + id).pipe(
+      tap(_ => {
+        this.bookmarks$.pipe(take(1)).subscribe({
+          next: bookmarks => {
+            this.bookmarksSource.next([...bookmarks.filter(x => x.id !== id)]);
+          }
+        })
+      })
+    );
   }
 
 }

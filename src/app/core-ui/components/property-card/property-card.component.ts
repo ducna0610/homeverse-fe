@@ -23,7 +23,7 @@ export class PropertyCardComponent {
   @Output() removePropertyEvent = new EventEmitter<number>();
 
   constructor(
-    private propertyService: PropertyService, 
+    private propertyService: PropertyService,
     private alertifyService: AlertifyService
   ) { }
 
@@ -34,11 +34,15 @@ export class PropertyCardComponent {
   setBookmark() {
     if (this.isBookmarked()) {
       this.removePropertyEvent.emit(this.property.id);
-      this.alertifyService.success("Đã xóa");
-      this.propertyService.deleteBookmark(this.property.id).subscribe();
+      this.propertyService.deleteBookmark(this.property.id).subscribe(
+        _ =>
+          this.alertifyService.success("Đã xóa")
+      );
     } else {
-      this.alertifyService.success("Đã lưu");
-      this.propertyService.createBookmark(this.property).subscribe();
+      this.propertyService.createBookmark(this.property).subscribe(
+        _ => 
+          this.alertifyService.success("Đã lưu")
+      );
     }
   }
 }

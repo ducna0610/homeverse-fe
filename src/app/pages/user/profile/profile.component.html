@@ -1,7 +1,7 @@
 <section class="form-container">
   <form [formGroup]="updateProfileForm" (ngSubmit)="onSubmit()">
     <h3>Cập nhật tài khoản</h3>
-    <input type="text" name="name" placeholder="tên" class="box" formControlName="userName" [class.ng-touched]="
+    <input type="text" name="userName" placeholder="tên" class="box" formControlName="userName" [class.ng-touched]="
           isSubmitted || updateProfileForm.get('userName')!.touched
         " />
     <span *ngIf="
@@ -41,7 +41,7 @@
       </span>
     </span>
 
-    <input type="password" name="old_pass" maxlength="20" placeholder="Mật khẩu" class="box" formControlName="password"
+    <input type="password" name="password" maxlength="20" placeholder="Mật khẩu" class="box" formControlName="password"
       [class.ng-touched]="
           isSubmitted || updateProfileForm.get('password')!.touched
         " />
@@ -54,7 +54,7 @@
       </span>
     </span>
 
-    <input type="password" name="new_pass" maxlength="20" placeholder="Mật khẩu mới (optional)" class="box"
+    <input type="password" name="newPassword" maxlength="20" placeholder="Mật khẩu mới (optional)" class="box"
       formControlName="newPassword" [class.ng-touched]="
           isSubmitted || updateProfileForm.get('newPassword')!.touched
         " />
@@ -67,7 +67,7 @@
       </span>
     </span>
 
-    <input type="password" name="c_pass" maxlength="20" placeholder="Xác nhận mật khẩu mới" class="box"
+    <input type="password" name="confirmNewPassword" maxlength="20" placeholder="Xác nhận mật khẩu mới" class="box"
       formControlName="confirmNewPassword" [class.ng-touched]="
           isSubmitted || updateProfileForm.get('confirmNewPassword')!.touched
         " />
